@@ -21,9 +21,13 @@ Run the camera_calibration.py file and you will see which of the captured images
 Inside the calibration_parameters file will be:
 
 **Camera Matrix (camera_matrix)**: Matrix containing some parameters that define the camera and its outputs
+
 **Distortion Coefficients (dist_coeffs)**: Coefficients describing the distortion of the camera lense
-**Rotational Vectors (rvecs)**: Describing the rotation of the camera in 3D space to align its coordinate system with the world coordinate system.
-**Translational Vectors (tvecs)**: Describing the position of the camera in 3D space to align its coordinate system with the world coordinate system.
+
+**Rotational Vectors (rvecs)**: Describing the rotation of the camera in 3D space to align its coordinate system with the world coordinate system
+
+**Translational Vectors (tvecs)**: Describing the position of the camera in 3D space to align its coordinate system with the world coordinate system
+
 **Root-Mean Squared Error (rms_error)**: Indicates how well the calibration fits the detected corners, low value -> better calibration
 
 ## Important Notes
