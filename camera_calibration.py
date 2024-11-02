@@ -61,11 +61,16 @@ np.savez('calibration_parameters.npz',
 
 print("Camera calibration parameters saved to 'calibration_parameters.npz'")
 
-# errror not to osure how it owrks got from oepncv2 doc
-# mean_error = 0
-# for i in range(len(object_points)):
-#     image_points2, _ = cv2.projectPoints(object_points[i], rotation_vecs[i], translation_vecs[i], camera_matrix, distance)
-#     error = cv2.norm(image_points[i], image_points2, cv2.NORM_L2/len(image_points2))
-#     mean_error += error 
 
-# print("total error: {}".format(mean_error/len(object_points)))
+# project 3d object points back onto 2d image plane, 
+# then calc distance between actual 2d image points and reprojected 2d image points
+mean_error = 0
+for i in range(len(object_points)):
+    # proj 3d points back into 2d image based on camera params
+    image_points2, _ = cv2.projectPoints(object_points[i], rotation_vecs[i], translation_vecs[i], camera_matrix, distance)
+    # dividing by total num of points being reprojected so we get average error per point
+    error = cv2.norm(image_points[i], image_points2, cv2.NORM_L2) /len(image_points2)
+    mean_error += error 
+
+print(f"total error: {mean_error/len(object_points):.3f} = {mean_error/len(object_points):.3f} pixels apart")
+
